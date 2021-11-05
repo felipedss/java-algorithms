@@ -15,17 +15,7 @@ class DynamicArrayTest {
 
     @BeforeEach
     void init() {
-        dynamicArray.push(10);
-        dynamicArray.push(15);
-        dynamicArray.push(20);
-        dynamicArray.push(25);
-        dynamicArray.push(30);
-        dynamicArray.push(35);
-        dynamicArray.push(40);
-        dynamicArray.push(45);
-        dynamicArray.push(50);
-        dynamicArray.push(55);
-        dynamicArray.push(60);
+        IntStream.range(0, 11).forEach(dynamicArray::push);
     }
 
     @Test
@@ -47,8 +37,8 @@ class DynamicArrayTest {
 
     @Test
     void testAt() {
-        assertEquals(35, dynamicArray.at(5));
-        assertEquals(60, dynamicArray.at(10));
+        assertEquals(5, dynamicArray.at(5));
+        assertEquals(10, dynamicArray.at(10));
     }
 
     @Test
@@ -65,18 +55,13 @@ class DynamicArrayTest {
     void testInsert() {
         dynamicArray.insert(4, 28);
         assertEquals(28, dynamicArray.at(4));
-        assertEquals(30, dynamicArray.at(5));
+        assertEquals(4, dynamicArray.at(5));
         assertEquals(12, dynamicArray.getSize());
     }
 
     @Test
     void testInsertWithResize() {
-        dynamicArray.insert(1, 29);
-        dynamicArray.insert(2, 30);
-        dynamicArray.insert(3, 31);
-        dynamicArray.insert(4, 32);
-        dynamicArray.insert(4, 33);
-        dynamicArray.insert(5, 34);
+        IntStream.range(0, 6).forEach(item -> dynamicArray.insert(item, item));
         assertEquals(32, dynamicArray.getCapacity());
     }
 
@@ -89,18 +74,13 @@ class DynamicArrayTest {
     void testPrepend() {
         dynamicArray.preprend(5);
         assertEquals(5, dynamicArray.at(0));
-        assertEquals(10, dynamicArray.at(1));
+        assertEquals(0, dynamicArray.at(1));
         assertEquals(12, dynamicArray.getSize());
     }
 
     @Test
     void testPrependWithResize() {
-        dynamicArray.preprend(29);
-        dynamicArray.preprend(30);
-        dynamicArray.preprend(31);
-        dynamicArray.preprend(32);
-        dynamicArray.preprend(33);
-        dynamicArray.preprend(34);
+        IntStream.range(0, 6).forEach(dynamicArray::preprend);
         assertEquals(32, dynamicArray.getCapacity());
     }
 
@@ -117,7 +97,7 @@ class DynamicArrayTest {
     @Test
     void testPop() {
         int pop = dynamicArray.pop();
-        assertEquals(60, pop);
+        assertEquals(10, pop);
         assertEquals(10, dynamicArray.getSize());
     }
 
@@ -125,7 +105,7 @@ class DynamicArrayTest {
     void testDelete() {
         dynamicArray.delete(4);
         assertEquals(10, dynamicArray.getSize());
-        assertEquals(35, dynamicArray.at(4));
+        assertEquals(5, dynamicArray.at(4));
     }
 
     @Test
@@ -137,13 +117,13 @@ class DynamicArrayTest {
     void testRemove() {
         dynamicArray.push(35);
         dynamicArray.remove(35);
-        assertEquals(10, dynamicArray.getSize());
+        assertEquals(11, dynamicArray.getSize());
     }
 
     @Test
     void testFind() {
-        dynamicArray.push(35);
-        assertEquals(5, dynamicArray.find(35));
+        dynamicArray.push(2);
+        assertEquals(2, dynamicArray.find(2));
     }
 
     @Test
