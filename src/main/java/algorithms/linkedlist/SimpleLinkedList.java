@@ -2,17 +2,14 @@ package algorithms.linkedlist;
 
 import java.util.NoSuchElementException;
 
-/**
- * A simple linked list implementation without tail.
- */
-public class SimpleLinkedList {
+public class SimpleLinkedList<E> implements ILinkedList<E> {
 
-    private Node head;
+    private Node<E> head;
     private int size = 0;
 
-    static class Node {
-        int data;
-        Node next;
+    static class Node<E> {
+        E data;
+        Node<E> next;
     }
 
     /**
@@ -20,8 +17,9 @@ public class SimpleLinkedList {
      *
      * @param val value
      */
-    public void pushFront(int val) {
-        Node node = new Node();
+    @Override
+    public void pushFront(E val) {
+        Node<E> node = new Node<>();
         node.data = val;
         node.next = head;
         head = node;
@@ -33,14 +31,15 @@ public class SimpleLinkedList {
      *
      * @param val value
      */
-    public void pushBack(int val) {
+    @Override
+    public void pushBack(E val) {
         if (head == null) {
             pushFront(val);
             return;
         }
-        Node node = new Node();
+        Node<E> node = new Node<>();
         node.data = val;
-        Node copyHead = head;
+        Node<E> copyHead = head;
         while (copyHead.next != null) {
             copyHead = copyHead.next;
         }
@@ -51,13 +50,14 @@ public class SimpleLinkedList {
     /**
      * removes end item and returns its value
      *
-     * @return int
+     * @return E
      */
-    public int popBack() {
+    @Override
+    public E popBack() {
         if (head == null) {
             throw new NoSuchElementException();
         }
-        Node copyHead = head;
+        Node<E> copyHead = head;
         while (copyHead.next.next != null) {
             copyHead = copyHead.next;
         }
@@ -69,6 +69,7 @@ public class SimpleLinkedList {
     /**
      * remove front item and return its value
      */
+    @Override
     public void popFront() {
         if (head == null) {
             throw new NoSuchElementException();
@@ -80,9 +81,10 @@ public class SimpleLinkedList {
     /**
      * get value of front item
      *
-     * @return int
+     * @return E
      */
-    public int front() {
+    @Override
+    public E front() {
         if (head == null) {
             throw new NoSuchElementException();
         }
@@ -92,13 +94,14 @@ public class SimpleLinkedList {
     /**
      * get value of end item
      *
-     * @return int
+     * @return E
      */
-    public int back() {
+    @Override
+    public E back() {
         if (head == null) {
             throw new NoSuchElementException();
         }
-        Node copyHead = head;
+        Node<E> copyHead = head;
         while (copyHead.next != null) {
             copyHead = copyHead.next;
         }
@@ -110,6 +113,7 @@ public class SimpleLinkedList {
      *
      * @return boolean
      */
+    @Override
     public boolean isEmpty() {
         return head == null;
     }
@@ -119,6 +123,7 @@ public class SimpleLinkedList {
      *
      * @return size
      */
+    @Override
     public int getSize() {
         return size;
     }
@@ -127,15 +132,16 @@ public class SimpleLinkedList {
      * returns the value of the nth item (starting at 0 for first)
      *
      * @param index index
-     * @return int
+     * @return E
      */
-    public int valueAt(int index) {
+    @Override
+    public E valueAt(int index) {
 
         if (head == null) {
             throw new NoSuchElementException();
         }
 
-        Node copyHead = head;
+        Node<E> copyHead = head;
         int count = 0;
         do {
             if (count == index) {
@@ -151,9 +157,10 @@ public class SimpleLinkedList {
      * insert value at index, so current item at that index is pointed to by new item at index
      *
      * @param index index
-     * @param val value
+     * @param val   value
      */
-    public void insert(int index, int val) {
+    @Override
+    public void insert(int index, E val) {
         if (index > 0 && head == null) {
             throw new NoSuchElementException();
         }
@@ -162,10 +169,10 @@ public class SimpleLinkedList {
             return;
         }
 
-        Node node = new Node();
+        Node<E> node = new Node<>();
         node.data = val;
 
-        Node copyHead = head;
+        Node<E> copyHead = head;
         int counter = 0;
         while (copyHead != null) {
             if (counter + 1 == index) {
@@ -184,6 +191,7 @@ public class SimpleLinkedList {
      *
      * @param index index
      */
+    @Override
     public void erase(int index) {
         if (index + 1 > size) {
             throw new NoSuchElementException();
@@ -193,7 +201,7 @@ public class SimpleLinkedList {
             return;
         }
 
-        Node current = head;
+        Node<E> current = head;
         int counter = 0;
         while (current != null) {
             if (counter + 1 == index) {
@@ -210,14 +218,15 @@ public class SimpleLinkedList {
      * returns the value of the node at nth position from the end of the list
      *
      * @param index index
-     * @return int
+     * @return E
      */
-    public int valueFromEnd(int index) {
+    @Override
+    public E valueFromEnd(int index) {
         if (head == null) {
             throw new NoSuchElementException();
         }
 
-        Node current = head;
+        Node<E> current = head;
         int count = 0;
         while (current != null) {
             if (count + 1 == (size - index)) {
@@ -232,11 +241,12 @@ public class SimpleLinkedList {
     /**
      * reverses the list
      */
+    @Override
     public void reverse() {
-        Node current = head;
-        Node newHead = null;
+        Node<E> current = head;
+        Node<E> newHead = null;
         while (current != null) {
-            Node node = new Node();
+            Node<E> node = new Node<>();
             node.data = current.data;
             node.next = newHead;
             newHead = node;
@@ -250,13 +260,14 @@ public class SimpleLinkedList {
      *
      * @param val value
      */
-    public void removeValue(int val) {
+    @Override
+    public void removeValue(E val) {
 
         if (head == null) {
             throw new NoSuchElementException();
         }
 
-        Node copyHead = head;
+        Node<E> copyHead = head;
 
         if (copyHead.data == val) {
             head = copyHead.next;
@@ -278,5 +289,6 @@ public class SimpleLinkedList {
         }
         throw new NoSuchElementException();
     }
+
 
 }

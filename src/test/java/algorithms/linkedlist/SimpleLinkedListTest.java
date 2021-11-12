@@ -12,13 +12,13 @@ class SimpleLinkedListTest {
 
     @Test
     void testEmpty() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertTrue(simpleLinkedList.isEmpty());
     }
 
     @Test
     void testGetSize() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(50);
         simpleLinkedList.pushFront(40);
         simpleLinkedList.pushFront(30);
@@ -30,7 +30,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testGetValueAt() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(50);
         simpleLinkedList.pushFront(40);
         simpleLinkedList.pushFront(30);
@@ -43,7 +43,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testPushFront() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(20);
         simpleLinkedList.pushFront(10);
         assertEquals(10, simpleLinkedList.valueAt(0));
@@ -51,7 +51,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testPushBack() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -60,7 +60,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testPopFront() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(10);
         simpleLinkedList.pushFront(20);
         simpleLinkedList.pushFront(30);
@@ -71,7 +71,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testPopBack() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(10);
         simpleLinkedList.pushFront(20);
         simpleLinkedList.pushFront(30);
@@ -82,19 +82,19 @@ class SimpleLinkedListTest {
 
     @Test
     void testPopBackEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, simpleLinkedList::popBack);
     }
 
     @Test
     void testPopFrontEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, simpleLinkedList::popFront);
     }
 
     @Test
     void testFront() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(10);
         simpleLinkedList.pushFront(20);
         simpleLinkedList.pushFront(30);
@@ -104,7 +104,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testBack() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(10);
         simpleLinkedList.pushFront(20);
         simpleLinkedList.pushFront(30);
@@ -114,7 +114,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testInsert() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -132,7 +132,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testErase() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -150,7 +150,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testValueNFromEnd() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -162,7 +162,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testReverse() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -188,7 +188,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testRemove() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -203,7 +203,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testRemoveElementNotFound() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -215,51 +215,51 @@ class SimpleLinkedListTest {
 
     @Test
     void testRemoveEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.removeValue(80));
     }
 
     @Test
     void testFrontEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, simpleLinkedList::front);
     }
 
     @Test
     void testBackEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, simpleLinkedList::back);
     }
 
     @Test
     void testValueAtEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.valueAt(2));
     }
 
     @Test
     void testValueIndexNotFound() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushFront(10);
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.valueAt(50));
     }
 
     @Test
     void testInsertEmptyListWithValueGreatherThanZero() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.insert(2, 60));
     }
 
     @Test
     void testInsertInFirstPosition() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.insert(0, 60);
         assertEquals(1, simpleLinkedList.getSize());
     }
 
     @Test
     void testInsertInLastPosition() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.insert(0, 60);
         simpleLinkedList.insert(0, 50);
         simpleLinkedList.insert(2, 40);
@@ -268,13 +268,13 @@ class SimpleLinkedListTest {
 
     @Test
     void testEraseEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.erase(0));
     }
 
     @Test
     void testEraseLastPosition() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.insert(0, 60);
         simpleLinkedList.insert(0, 60);
         simpleLinkedList.erase(1);
@@ -283,7 +283,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testEraseFirstPosition() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.insert(0, 60);
         simpleLinkedList.insert(0, 60);
         simpleLinkedList.erase(0);
@@ -292,7 +292,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testEraseIndexNotFound() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.insert(0, 60);
         simpleLinkedList.insert(0, 60);
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.erase(100));
@@ -300,21 +300,21 @@ class SimpleLinkedListTest {
 
     @Test
     void testValueFromEndEmptyList() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.valueFromEnd(0));
     }
 
 
     @Test
     void testValueFromEndIndexNotFound() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.insert(0, 60);
         assertThrows(NoSuchElementException.class, () -> simpleLinkedList.valueFromEnd(200));
     }
 
     @Test
     void testRemoveFirstElement() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
@@ -327,7 +327,7 @@ class SimpleLinkedListTest {
 
     @Test
     void testRemoveLastElement() {
-        SimpleLinkedList simpleLinkedList = new SimpleLinkedList();
+        SimpleLinkedList<Integer> simpleLinkedList = new SimpleLinkedList<>();
         simpleLinkedList.pushBack(10);
         simpleLinkedList.pushBack(20);
         simpleLinkedList.pushBack(30);
