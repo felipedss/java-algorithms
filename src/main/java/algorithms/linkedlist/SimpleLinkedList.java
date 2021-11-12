@@ -2,6 +2,9 @@ package algorithms.linkedlist;
 
 import java.util.NoSuchElementException;
 
+/**
+ * A simple linked list implementation without tail.
+ */
 public class SimpleLinkedList {
 
     private Node head;
@@ -12,6 +15,11 @@ public class SimpleLinkedList {
         Node next;
     }
 
+    /**
+     * adds an item to the front of the list
+     *
+     * @param val value
+     */
     public void pushFront(int val) {
         Node node = new Node();
         node.data = val;
@@ -20,6 +28,11 @@ public class SimpleLinkedList {
         size++;
     }
 
+    /**
+     * adds an item at the end
+     *
+     * @param val value
+     */
     public void pushBack(int val) {
         if (head == null) {
             pushFront(val);
@@ -35,6 +48,11 @@ public class SimpleLinkedList {
         size++;
     }
 
+    /**
+     * removes end item and returns its value
+     *
+     * @return int
+     */
     public int popBack() {
         if (head == null) {
             throw new NoSuchElementException();
@@ -48,6 +66,9 @@ public class SimpleLinkedList {
         return copyHead.data;
     }
 
+    /**
+     * remove front item and return its value
+     */
     public void popFront() {
         if (head == null) {
             throw new NoSuchElementException();
@@ -56,6 +77,11 @@ public class SimpleLinkedList {
         size--;
     }
 
+    /**
+     * get value of front item
+     *
+     * @return int
+     */
     public int front() {
         if (head == null) {
             throw new NoSuchElementException();
@@ -63,6 +89,11 @@ public class SimpleLinkedList {
         return head.data;
     }
 
+    /**
+     * get value of end item
+     *
+     * @return int
+     */
     public int back() {
         if (head == null) {
             throw new NoSuchElementException();
@@ -74,32 +105,54 @@ public class SimpleLinkedList {
         return copyHead.data;
     }
 
+    /**
+     * bool returns true if empty
+     *
+     * @return boolean
+     */
     public boolean isEmpty() {
         return head == null;
     }
 
+    /**
+     * returns number of data elements in list
+     *
+     * @return size
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * returns the value of the nth item (starting at 0 for first)
+     *
+     * @param index index
+     * @return int
+     */
     public int valueAt(int index) {
 
         if (head == null) {
             throw new NoSuchElementException();
         }
 
-        Node newNode = head;
+        Node copyHead = head;
         int count = 0;
         do {
             if (count == index) {
-                return newNode.data;
+                return copyHead.data;
             }
             count++;
-            newNode = newNode.next;
-        } while (newNode != null);
+            copyHead = copyHead.next;
+        } while (copyHead != null);
         throw new NoSuchElementException();
     }
 
+    /**
+     * insert value at index, so current item at that index is pointed to by new item at index
+     *
+     * @param index index
+     * @param val value
+     */
     public void insert(int index, int val) {
         if (index > 0 && head == null) {
             throw new NoSuchElementException();
@@ -108,35 +161,32 @@ public class SimpleLinkedList {
             pushFront(val);
             return;
         }
-        if (index == size) {
-            pushBack(val);
-            return;
-        }
 
         Node node = new Node();
         node.data = val;
 
-        Node current = head;
+        Node copyHead = head;
         int counter = 0;
-        while (current != null) {
+        while (copyHead != null) {
             if (counter + 1 == index) {
-                node.next = current.next;
-                current.next = node;
+                node.next = copyHead.next;
+                copyHead.next = node;
                 break;
             }
             counter++;
-            current = current.next;
+            copyHead = copyHead.next;
         }
         size++;
     }
 
+    /**
+     * removes node at given index
+     *
+     * @param index index
+     */
     public void erase(int index) {
-        if (index > size) {
+        if (index + 1 > size) {
             throw new NoSuchElementException();
-        }
-        if (index == size) {
-            popBack();
-            return;
         }
         if (index == 0) {
             popFront();
@@ -156,6 +206,12 @@ public class SimpleLinkedList {
         size--;
     }
 
+    /**
+     * returns the value of the node at nth position from the end of the list
+     *
+     * @param index index
+     * @return int
+     */
     public int valueFromEnd(int index) {
         if (head == null) {
             throw new NoSuchElementException();
@@ -173,6 +229,9 @@ public class SimpleLinkedList {
         throw new NoSuchElementException();
     }
 
+    /**
+     * reverses the list
+     */
     public void reverse() {
         Node current = head;
         Node newHead = null;
@@ -184,6 +243,40 @@ public class SimpleLinkedList {
             current = current.next;
         }
         head = newHead;
+    }
+
+    /**
+     * removes the first item in the list with this value
+     *
+     * @param val value
+     */
+    public void removeValue(int val) {
+
+        if (head == null) {
+            throw new NoSuchElementException();
+        }
+
+        Node copyHead = head;
+
+        if (copyHead.data == val) {
+            head = copyHead.next;
+            size--;
+            return;
+        }
+
+        while (copyHead.next != null) {
+            if (copyHead.next.data == val) {
+                if (copyHead.next.next == null) {
+                    copyHead.next = null;
+                } else {
+                    copyHead.next = copyHead.next.next;
+                }
+                size--;
+                return;
+            }
+            copyHead = copyHead.next;
+        }
+        throw new NoSuchElementException();
     }
 
 }
