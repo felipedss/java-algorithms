@@ -1,21 +1,13 @@
 package algorithms.tree;
 
+import java.util.NoSuchElementException;
+
 public class BST {
 
     private Node root;
 
-    public boolean isEmpty() {
-        return this.root == null;
-    }
-
-    static class Node {
-        int data;
-        Node left;
-        Node rigth;
-
-        public Node(int data) {
-            this.data = data;
-        }
+    public Node getRoot() {
+        return root;
     }
 
     /**
@@ -32,7 +24,7 @@ public class BST {
             return new Node(key);
         }
         if (key > node.data) {
-            node.rigth = insert(key, node.rigth);
+            node.right = insert(key, node.right);
         } else if (key < node.data) {
             node.left = insert(key, node.left);
         }
@@ -64,9 +56,72 @@ public class BST {
             return node;
         }
         if (key > node.data) {
-            return find(key, node.rigth);
+            return find(key, node.right);
         }
         return find(key, node.left);
+    }
+
+    private Node min(Node node) {
+        if (node == null) {
+            throw new NoSuchElementException("Tree is empty");
+        }
+        if (node.left == null) {
+            return node;
+        }
+        return min(node.left);
+    }
+
+    private Node max(Node node) {
+        if (node == null) {
+            throw new NoSuchElementException("Tree is empty");
+        }
+        if (node.right == null) {
+            return node;
+        }
+        return max(node.right);
+    }
+
+    /**
+     * returns the minimum value stored in the tree
+     *
+     * @return int
+     */
+    public int min() {
+        return min(root).data;
+    }
+
+    /**
+     * returns the maximum value stored in the tree
+     *
+     * @return int
+     */
+    public int max() {
+        return max(root).data;
+    }
+
+    /**
+     * returns the height in nodes (single node's height is 1)
+     *
+     * @return int
+     */
+    public int height() {
+        return height(root);
+    }
+
+    private int height(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    /**
+     * Determines if isEmpty
+     */
+    public boolean isEmpty() {
+        return this.root == null;
     }
 
 

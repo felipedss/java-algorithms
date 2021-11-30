@@ -1,6 +1,12 @@
 package algorithms.tree;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.NoSuchElementException;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -22,21 +28,54 @@ class BSTTest {
     @Test
     void testEmpty() {
         BST bst = new BST();
-        Assertions.assertTrue(bst.isEmpty());
+        assertTrue(bst.isEmpty());
     }
 
     @Test
     void testFindRightSide() {
-        Assertions.assertNotNull(bst.find(20));
+        assertNotNull(bst.find(20));
     }
 
     @Test
     void testFindLeftSide() {
-        Assertions.assertNotNull(bst.find(8));
+        assertNotNull(bst.find(8));
     }
 
     @Test
     void testExists() {
-        Assertions.assertTrue(bst.exists(20));
+        assertTrue(bst.exists(20));
+    }
+
+    @Test
+    void testMin() {
+        assertEquals(8, bst.min());
+    }
+
+    @Test
+    void testMax() {
+        assertEquals(25, bst.max());
+    }
+
+    @Test
+    void testMinWithEmptyTree() {
+        BST bst = new BST();
+        assertThrows(NoSuchElementException.class, bst::min);
+    }
+
+    @Test
+    void testMaxWithEmptyTree() {
+        BST bst = new BST();
+        assertThrows(NoSuchElementException.class, bst::max);
+    }
+
+    @Test
+    void testHeightWithEmptyTree() {
+        BST bst = new BST();
+        assertEquals(0, bst.height());
+    }
+
+    @Test
+    void testHeight() {
+        assertEquals(3, bst.height());
     }
 }
