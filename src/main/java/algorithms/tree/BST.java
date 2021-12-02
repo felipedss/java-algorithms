@@ -1,14 +1,13 @@
 package algorithms.tree;
 
+import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Integer.MIN_VALUE;
+
 import java.util.NoSuchElementException;
 
 public class BST {
 
-    private Node root;
-
-    public Node getRoot() {
-        return root;
-    }
+    Node root;
 
     /**
      * Add value into tree
@@ -124,5 +123,23 @@ public class BST {
         return this.root == null;
     }
 
+    /**
+     * is_binary_search_tree
+     *
+     * @return boolean
+     */
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, MIN_VALUE, MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node root, int minValue, int maxValue) {
+        if (root == null) {
+            return true;
+        }
+        return root.data > minValue
+                && root.data < maxValue
+                && isBinarySearchTree(root.left, minValue, root.data)
+                && isBinarySearchTree(root.right, root.data, maxValue);
+    }
 
 }

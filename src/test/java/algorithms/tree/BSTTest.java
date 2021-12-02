@@ -78,4 +78,21 @@ class BSTTest {
     void testHeight() {
         assertEquals(3, bst.height());
     }
+
+    @Test
+    void testIsBinarySearchTree() {
+        BST bst = new BST();
+        bst.add(7);
+        bst.add(4);
+        bst.add(9);
+        bst.add(1);
+        bst.add(6);
+        assertTrue(bst.isBinarySearchTree());
+    }
+
+    @Test
+    void testEmptyIsBinarySearchTree() {
+        BST bst = new BST();
+        assertTrue(bst.isBinarySearchTree());
+    }
 }

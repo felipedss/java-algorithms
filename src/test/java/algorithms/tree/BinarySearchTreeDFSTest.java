@@ -1,5 +1,7 @@
 package algorithms.tree;
 
+import static algorithms.tree.BinarySearchTreeDFS.inOrder;
+import static algorithms.tree.BinarySearchTreeDFS.postOrder;
 import static algorithms.tree.BinarySearchTreeDFS.preOrder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -28,14 +31,14 @@ class BinarySearchTreeDFSTest {
         System.setOut(new PrintStream(outContent));
     }
 
-    @AfterAll
-    public static void restoreStreams() {
+    @AfterEach
+    public void restoreStreams() {
         System.setOut(originalOut);
     }
 
     @Test
-    void test() {
-        preOrder(bst.getRoot());
+    void testPreOrder() {
+        preOrder(bst.root);
         assertEquals("15\n" +
                 "10\n" +
                 "8\n" +
@@ -43,6 +46,30 @@ class BinarySearchTreeDFSTest {
                 "20\n" +
                 "17\n" +
                 "25\n", outContent.toString());
+    }
+
+    @Test
+    void testInOrder() {
+        inOrder(bst.root);
+        assertEquals("8\n" +
+                "10\n" +
+                "12\n" +
+                "15\n" +
+                "17\n" +
+                "20\n" +
+                "25\n", outContent.toString());
+    }
+
+    @Test
+    void testPostOrder() {
+        postOrder(bst.root);
+        assertEquals("8\n" +
+                "12\n" +
+                "10\n" +
+                "17\n" +
+                "25\n" +
+                "20\n" +
+                "15\n", outContent.toString());
     }
 
 }

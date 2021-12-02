@@ -34,7 +34,7 @@ class BinarySearchTreeBFSTest {
 
     @Test
     void test() {
-        BinarySearchTreeBFS.levelOrder(bst.getRoot());
+        BinarySearchTreeBFS.levelOrder(bst.root);
         assertEquals("15\n" +
                 "10\n" +
                 "20\n" +
