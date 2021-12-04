@@ -2,7 +2,6 @@ package algorithms.tree;
 
 /**
  * DFS (depth-first-search)
- *
  * Space complexity O(h)
  * Time complexity O(n)
  */

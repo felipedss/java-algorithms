@@ -7,8 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.NoSuchElementException;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BSTTest {
 
@@ -94,5 +97,76 @@ class BSTTest {
     void testEmptyIsBinarySearchTree() {
         BST bst = new BST();
         assertTrue(bst.isBinarySearchTree());
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "15",
+            "12",
+            "5",
+            "17"
+    })
+    void testDelete(int value) {
+        BST bst = new BST();
+        bst.add(12);
+        bst.add(5);
+        bst.add(15);
+        bst.add(3);
+        bst.add(7);
+        bst.add(13);
+        bst.add(17);
+        bst.add(1);
+        bst.add(9);
+        assertNotNull(bst.delete(value));
+    }
+
+    @Test
+    void testDeleteEmptyTree() {
+        BST bst = new BST();
+        assertNotNull(bst.delete(17));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "3, 5",
+            "12, 13",
+            "7, 9"
+    })
+    void testSucessor(int value, int expected ) {
+        BST bst = new BST();
+        bst.add(12);
+        bst.add(5);
+        bst.add(15);
+        bst.add(3);
+        bst.add(7);
+        bst.add(13);
+        bst.add(17);
+        bst.add(1);
+        bst.add(9);
+        Node successor = bst.getSuccessor(bst.root, value);
+        Assertions.assertEquals(expected, successor.data);
+    }
+
+    @Test
+    void testSucessor17() {
+        BST bst = new BST();
+        bst.add(12);
+        bst.add(5);
+        bst.add(15);
+        bst.add(3);
+        bst.add(7);
+        bst.add(13);
+        bst.add(17);
+        bst.add(1);
+        bst.add(9);
+        Node successor = bst.getSuccessor(bst.root, 17);
+        Assertions.assertNull(successor);
+    }
+
+    @Test
+    void testSucessorEmptyTree() {
+        BST bst = new BST();
+        Assertions.assertNull(bst.getSuccessor(bst.root, 7));
     }
 }

@@ -142,4 +142,78 @@ public class BST {
                 && isBinarySearchTree(root.right, root.data, maxValue);
     }
 
+    public Node delete(int data) {
+        root = deleteNode(root, data);
+        return root;
+    }
+
+    public Node deleteNode(Node node, int data) {
+        if (node == null) {
+            return null;
+        }
+
+        if (data < node.data) {
+            node.left = deleteNode(node.left, data);
+        } else if (data > node.data) {
+            node.right = deleteNode(node.right, data);
+        } else {
+
+            //CASE 1 : No child
+            if (node.left == null && node.right == null) {
+                return null;
+            }
+
+            //CASE 2 : One child
+            else if (node.left == null) {
+                node = node.right;
+                return node;
+            } else if (node.right == null) {
+                node = node.left;
+                return node;
+            }
+
+            //CASE 3
+            else {
+                Node min = min(node.right);
+                node.data = min.data;
+                node.right = deleteNode(node.right, min.data);
+            }
+        }
+        return node;
+    }
+
+    /**
+     * Function to find Inorder Sucessor in BST
+     * Time complexity O(h)
+     */
+    public Node getSuccessor(Node node, int data) {
+
+        //Search the node - O(h)
+        Node current = find(data, node);
+
+        if (current == null) {
+            return null;
+        }
+
+        //case 1 - Node has right subtree
+        if (current.right != null) {
+            return min(current.right);
+        }
+        //case 2 - No right subtree
+        else {
+            Node successor = null;
+            Node ancestor = node;
+            while (ancestor != current) {
+                if (current.data < ancestor.data) {
+                    successor = ancestor;
+                    ancestor = ancestor.left;
+                } else {
+                    ancestor = ancestor.right;
+                }
+            }
+            return successor;
+        }
+    }
+
+
 }
