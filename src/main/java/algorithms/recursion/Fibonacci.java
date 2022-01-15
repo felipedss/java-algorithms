@@ -8,14 +8,21 @@ public class Fibonacci {
 
 
     public static void main(String[] args) {
-        System.out.println(fib(3));
+        int n = 6;
+        int[] memo = new int[n + 1];
+        System.out.println(fib(n, memo));
     }
 
-    private static int fib(int n) {
+    private static int fib(int n, int[] memo) {
+        if (memo[n] != 0) {
+            return memo[n];
+        }
         if (n == 0 || n == 1) {
             return n;
         }
-        return fib(n - 1) + fib(n - 2);
+        int result = fib(n - 1, memo) + fib(n - 2, memo);
+        memo[n] = result;
+        return result;
     }
 
 
