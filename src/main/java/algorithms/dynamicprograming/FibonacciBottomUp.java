@@ -1,5 +1,10 @@
 package algorithms.dynamicprograming;
 
+/**
+ * FibonacciBottomUp
+ * <p>
+ * Is usually faster than Top Down
+ */
 public class FibonacciBottomUp {
 
     public int fib(int number) {
